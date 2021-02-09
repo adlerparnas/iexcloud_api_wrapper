@@ -16,22 +16,24 @@ const prefix = () => {
   return pk && pk[0] === "T" ? sandboxURL : baseURL;
 };
 
-export const iexApiRequest = async (
+
+export const iexApiRequest = async <T>(
   endpoint: string,
   params = {}
-): Promise<any> => {
+): Promise<T> => {
   try {
-    const { data } = await axios.get(`${prefix()}${apiversion}${endpoint}`, {
+    const { data } = await axios.get<T>(`${prefix()}${apiversion}${endpoint}`, {
       params: {
         ...params,
         token: pk,
       },
     });
 
-    return data;
+    return data as T;
   } catch (error) {
     // tslint:disable-next-line: no-console
     console.error(error);
+    throw error;
   }
 };
 
