@@ -21,6 +21,7 @@ export * from "./Services/Financials.service";
 export * from "./Services/History.service";
 export * from "./Services/IEXSymbol.service";
 export * from "./Services/IncomeStatement.service";
+export * from "./Services/InternationalExchanges.service"
 export * from "./Services/Intraday.service";
 export * from "./Services/IntradayForDate.service";
 export * from "./Services/IntradayIEXOnly.service";

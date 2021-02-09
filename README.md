@@ -186,6 +186,7 @@ Below is a list of the iexcloud APIs that have ([x]) and have not ([ ]) been imp
 |-----|----------------|---------------:|-----|
 | [x] | Symbols | 100 | per call |
 | [x] | IEX Symbols | 0 | as in free
+| [x] | International Exchanges | 1 | per call 
 | [ ] | U.S. Exchanges | 1 | per call
 | [ ] | U.S. Holidays and Trading Days | 1 | per call
 | [ ] | Stock Tags
