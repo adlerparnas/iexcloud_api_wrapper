@@ -4,14 +4,14 @@
 
 import * as iex from "./index";
 
-test("advancedStats", async () => {
-  expect(await iex.advancedStats("AAPL")).toBeInstanceOf(iex.AdvancedStats);
-});
-test("balanceSheet", async () => {
-  expect(await iex.balanceSheet("AAPL")).toEqual(
-    expect.arrayContaining([expect.any(iex.BalanceSheet)])
-  );
-});
+// test("advancedStats", async () => {
+  // expect(await iex.advancedStats("AAPL")).toBeInstanceOf(iex.AdvancedStats);
+// });
+// test("balanceSheet", async () => {
+//   expect(await iex.balanceSheet("AAPL")).toEqual(
+//     expect.arrayContaining([expect.any(iex.BalanceSheet)])
+//   );
+// });
 test("cashFlowStatement", async () => {
   expect(await iex.cashFlowStatement("AAPL")).toEqual(
     expect.arrayContaining([expect.any(iex.CashFlowStatement)])

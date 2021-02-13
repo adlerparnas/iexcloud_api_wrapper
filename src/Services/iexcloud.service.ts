@@ -17,7 +17,7 @@ const prefix = () => {
 };
 
 
-export const iexApiRequest = async <T>(
+export const iexApiRequest = async <T = any>(
   endpoint: string,
   params = {}
 ): Promise<T> => {

@@ -1,10 +1,8 @@
-import { DynamicObject, iexApiRequest, KVP } from "./iexcloud.service";
+import { iexApiRequest } from "./iexcloud.service";
 import { Quote } from "./Quote.service";
 
-export const book = async (symbol: string): Promise<Book> => {
-  const data: KVP = await iexApiRequest(`/stock/${symbol}/book`);
-
-  return new Book(data);
+export const book = async (symbol: string): Promise<IEXBook> => {
+  return await iexApiRequest<IEXBook>(`/stock/${symbol}/book`);
 };
 
 export interface BidOrAsk {
@@ -30,10 +28,10 @@ export interface SystemEvent {
   timestamp: number;
 }
 
-export class Book extends DynamicObject {
-  public quote: Quote = new Quote({});
-  public bids: BidOrAsk[] = [];
-  public asks: BidOrAsk[] = [];
-  public trades: Trade[] = [];
-  public systemEvent: SystemEvent = { systemEvent: "", timestamp: 0 };
+export interface IEXBook {
+  quote: Quote;
+  bids: BidOrAsk[];
+  asks: BidOrAsk[];
+  trades: Trade[];
+  systemEvent: SystemEvent;
 }
