@@ -1,7 +1,7 @@
 import { BidOrAsk } from "./Book.service";
 import { iexApiRequest, KVP } from "./iexcloud.service";
 
-export const deepBook = async (symbol: string): Promise<any> => {
+export const deepBook = async (symbol: string): Promise<KVP<DEEPBook>> => {
   const data: KVP = await iexApiRequest("/deep/book", {
     symbol,
   });

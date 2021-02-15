@@ -14,7 +14,7 @@ export const balanceSheet = async (
   symbol: string,
   period: string = "quarter",
   lastN: number = 1
-): Promise<IEXBalanceSheet[]> => {
+): Promise<BalanceSheet[]> => {
   const { balancesheet } = await iexApiRequest<BalanceSheetResponse>(
     `/stock/${symbol}/balance-sheet`,
     {
@@ -28,10 +28,10 @@ export const balanceSheet = async (
 
 interface BalanceSheetResponse {
   symbol: string;
-  balancesheet: IEXBalanceSheet[]
+  balancesheet: BalanceSheet[]
 }
 
-export interface IEXBalanceSheet {
+export interface BalanceSheet {
   symbol: string;
   reportDate: string;
   currentCash: number;

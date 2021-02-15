@@ -7,11 +7,11 @@ type UsageType =
   | "alerts"
   | "alert-records";
 
-export const accountUsage = async (type: UsageType): Promise<IEXAccountUsage> => {
-  return iexApiRequest<IEXAccountUsage>(`/account/usage/${type}`);
+export const accountUsage = async (type: UsageType): Promise<AccountUsage> => {
+  return iexApiRequest<AccountUsage>(`/account/usage/${type}`);
 };
 
-export interface IEXAccountUsage {
+export interface AccountUsage {
     monthlyUsage: number;
     monthlyPayAsYouGo: number;
     dailyUsage: KVP<number>,

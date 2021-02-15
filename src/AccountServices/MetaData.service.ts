@@ -1,10 +1,10 @@
 import { iexApiRequest } from "./iexaccount.service";
 
-export const accountMetadata = async (): Promise<IEXAccountMetaData> => {
-  return await iexApiRequest<IEXAccountMetaData>(`/account/metadata`);
+export const accountMetadata = async (): Promise<AccountMetaData> => {
+  return await iexApiRequest<AccountMetaData>(`/account/metadata`);
 };
 
-export interface IEXAccountMetaData {
+export interface AccountMetaData {
   payAsYouGoEnabled: boolean;
   effectiveDate: number;
   endDateEffective: number;

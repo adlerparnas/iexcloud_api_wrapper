@@ -37,8 +37,8 @@ export const iexApiRequest = async <T = any>(
   }
 };
 
-export interface KVP {
-  [k: string]: any;
+export interface KVP<T = any> {
+  [k: string]: T;
 }
 
 export class DynamicObject implements KVP {

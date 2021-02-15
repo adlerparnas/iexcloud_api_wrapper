@@ -1,4 +1,4 @@
-import { iexApiRequest, KVP } from "./iexcloud.service";
+import { iexApiRequest } from "./iexcloud.service";
 import { Quote } from "./Quote.service";
 
 export type ListType =
@@ -12,7 +12,5 @@ export type ListType =
 export const list = async (
   listType: ListType = "mostactive"
 ): Promise<Quote[]> => {
-  const data: KVP[] = await iexApiRequest(`/stock/market/list/${listType}`);
-
-  return data.map((o) => new Quote(o));
+  return await iexApiRequest<Quote[]>(`/stock/market/list/${listType}`);
 };

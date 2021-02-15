@@ -54,7 +54,7 @@ export const history = async (
     endpoint += `/${date.replace(/-/g, "")}`;
   }
 
-  const data: KVP[] = await iexApiRequest(endpoint, {
+  const params = {
     changeFromClose,
     chartCloseOnly,
     chartIEXOnly,
@@ -63,9 +63,11 @@ export const history = async (
     chartReset,
     chartSimplify,
     chartByDay
-  });
+  }
 
-  return data.map((o: KVP) =>
-    !intraday ? new EndOfDay({ ...o, symbol }) : new Intraday({ ...o, symbol })
-  );
+  if (intraday) {
+    return iexApiRequest<Intraday[]>(endpoint, params);
+  } else {
+    return iexApiRequest<EndOfDay[]>(endpoint, params);
+  }
 };

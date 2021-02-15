@@ -1,23 +1,13 @@
-import { DynamicObject, iexApiRequest, KVP } from "./iexcloud.service";
+import { iexApiRequest } from "./iexcloud.service";
 
 export const internationalExchanges = async (): Promise<InternationalExchange[]> => {
-  const data: KVP[] = await iexApiRequest("/ref-data/exchanges");
-
-  return data.map((o: KVP) => new InternationalExchange(o));
+  return await iexApiRequest<InternationalExchange[]>("/ref-data/exchanges");
 };
 
-export interface IEXInternationalExchangeI {
+export interface InternationalExchange {
   exchange: string;
   region: string;
   description: string;
   mic: string;
   exchangeSuffix: string;
-}
-
-export class InternationalExchange extends DynamicObject {
-  public exchange: string = "";
-  public region: string = "";
-  public description: string = "";
-  public mic: string = "";
-  public exchangeSuffix: string = "";
 }

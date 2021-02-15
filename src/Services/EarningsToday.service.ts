@@ -1,29 +1,26 @@
-import { DynamicObject, iexApiRequest, KVP } from "./iexcloud.service";
+import { iexApiRequest } from "./iexcloud.service";
+import { Quote } from "./Quote.service";
 
 export const earningsToday = async (
   symbol: string
 ): Promise<EarningsToday[]> => {
-  const { bto } = await iexApiRequest(`/stock/${symbol}/today-earnings/`);
+  const { bto } = await iexApiRequest<TodayEarningResponse>(`/stock/${symbol}/today-earnings/`);
 
-  return bto.map((o: KVP) => new EarningsToday(o));
+  return bto;
 };
 
-export interface IEXEarningsToday {
+interface TodayEarningResponse {
+  bto: EarningsToday[];
+  amc: EarningsToday[];
+  dtm: EarningsToday[];
+}
+
+export interface EarningsToday {
   symbol: string;
   consensusEPS: number;
   announceTime: number;
   numberOfEstimates: number;
   fiscalPeriod: string;
   fiscalEndDate: string;
-  quote: KVP;
-}
-
-export class EarningsToday extends DynamicObject implements IEXEarningsToday {
-  public symbol: string = "";
-  public consensusEPS: number = 0;
-  public announceTime: number = 0;
-  public numberOfEstimates: number = 0;
-  public fiscalPeriod: string = "";
-  public fiscalEndDate: string = "";
-  public quote: KVP = {};
+  quote: Quote;
 }

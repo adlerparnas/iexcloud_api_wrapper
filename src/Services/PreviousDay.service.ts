@@ -1,12 +1,10 @@
-import { DynamicObject, iexApiRequest, KVP } from "./iexcloud.service";
+import { iexApiRequest } from "./iexcloud.service";
 
 export const previousDay = async (symbol: string): Promise<PreviousDay> => {
-  const data: KVP = await iexApiRequest(`/stock/${symbol}/previous`);
-
-  return new PreviousDay(data);
+  return await iexApiRequest<PreviousDay>(`/stock/${symbol}/previous`);
 };
 
-export interface IEXPreviousDay {
+export interface PreviousDay {
   symbol: string;
   date: string;
   open: number;
@@ -17,17 +15,4 @@ export interface IEXPreviousDay {
   unadjustedVolume: number;
   change: number;
   changePercent: number;
-}
-
-export class PreviousDay extends DynamicObject {
-  public symbol: string = "";
-  public date: string = "";
-  public open: number = 0;
-  public high: number = 0;
-  public low: number = 0;
-  public close: number = 0;
-  public volume: number = 0;
-  public unadjustedVolume: number = 0;
-  public change: number = 0;
-  public changePercent: number = 0;
 }

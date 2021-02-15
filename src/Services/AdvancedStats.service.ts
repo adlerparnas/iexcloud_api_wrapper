@@ -1,10 +1,10 @@
 import { iexApiRequest } from "./iexcloud.service";
 
-export const advancedStats = async (symbol: string): Promise<IEXAdvancedStats> => {
-  return await iexApiRequest<IEXAdvancedStats>(`/stock/${symbol}/advanced-stats`);
+export const advancedStats = async (symbol: string): Promise<AdvancedStats> => {
+  return await iexApiRequest<AdvancedStats>(`/stock/${symbol}/advanced-stats`);
 };
 
-export interface IEXAdvancedStats {
+export interface AdvancedStats {
   companyName: string;
   marketcap: number;
   week52high: number;

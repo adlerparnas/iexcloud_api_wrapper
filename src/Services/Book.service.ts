@@ -1,8 +1,8 @@
 import { iexApiRequest } from "./iexcloud.service";
 import { Quote } from "./Quote.service";
 
-export const book = async (symbol: string): Promise<IEXBook> => {
-  return await iexApiRequest<IEXBook>(`/stock/${symbol}/book`);
+export const book = async (symbol: string): Promise<Book> => {
+  return await iexApiRequest<Book>(`/stock/${symbol}/book`);
 };
 
 export interface BidOrAsk {
@@ -28,7 +28,7 @@ export interface SystemEvent {
   timestamp: number;
 }
 
-export interface IEXBook {
+export interface Book {
   quote: Quote;
   bids: BidOrAsk[];
   asks: BidOrAsk[];
